@@ -5,7 +5,7 @@ on:
     branches: [ main ]
   pull_request:
     branches: [ main ]
-  workflow_dispatch:  # 允许手动触发工作流
+  workflow_dispatch:
 
 jobs:
   build:
@@ -15,38 +15,40 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    # 明确指定使用MinGW版本的Qt
     - name: Install Qt
       uses: jurplel/install-qt-action@v4.3.0
       with:
         version: '6.7.*'
         host: 'windows'
         target: 'desktop'
-        arch: 'win64_mingw'
+        arch: 'win64_mingw'  # 确保使用MinGW版本
         use-official: true
         aqtversion: '==3.1.19'
         email: ${{ secrets.QTEMAIL }}
         pw: ${{ secrets.QTPASSWD }}
-        # modules: qtbase qtwidgets qtnetwork  # 显式指定需要安装的Qt模块
 
+    # 设置MinGW环境
     - name: Set up MinGW
       uses: coffeebe4code/setup-mingw@v1-beta-2
       with:
         platform: x64
         version: 11.2.0
 
-    - name: Verify MinGW installation
-      shell: cmd
-      run: |
-        mingw32-make --version
-        g++ --version
-
-    - name: Build
+    # 关键修改：明确指定使用MinGW编译器
+    - name: Configure CMake
       shell: cmd
       run: |
         mkdir build
         cd build
-        cmake ..
-        cmake --build . --config Release
+        cmake .. -G "MinGW Makefiles" -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -DCMAKE_BUILD_TYPE=Release
+
+    # 关键修改：使用mingw32-make构建
+    - name: Build
+      shell: cmd
+      run: |
+        cd build
+        mingw32-make
 
     - name: Create binary package
       shell: cmd
