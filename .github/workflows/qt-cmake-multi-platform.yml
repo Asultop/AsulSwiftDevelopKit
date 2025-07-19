@@ -51,8 +51,8 @@ jobs:
       
       run: |
         mkdir dist
-        echo "REPO_PRODUCTNAME value: ${{ secrets.REPO_PRODUCTNAME }}"
-        set "PRODUCT_NAME=${{ secrets.REPO_PRODUCTNAME }}"
+
+        set "PRODUCT_NAME=AsulSwiftDevelopKit"
         
         copy build\%PRODUCT_NAME%.exe dist\
         copy build\ElaWidgetTools.dll dist\
