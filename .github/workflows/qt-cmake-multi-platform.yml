@@ -1,0 +1,102 @@
+name: Qt Multi-Platform Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  release:
+    types: [ created ]
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, windows-latest, macos-latest ]
+        qt_version: [ '6.7.3' ]
+        include:
+          - os: ubuntu-latest
+            artifact_name: app-linux
+            build_type: Release
+            install_deps: |
+              sudo apt-get update
+              sudo apt-get install -y libgl1-mesa-dev
+          - os: windows-latest
+            artifact_name: app-windows
+            build_type: Release
+          - os: macos-latest
+            artifact_name: app-macos
+            build_type: Release
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install system dependencies (Linux)
+      if: matrix.os == 'ubuntu-latest'
+      run: ${{ matrix.install_deps }}
+
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v4
+      with:
+        version: ${{ matrix.qt_version }}
+        cached: 'false'
+        modules: qtsvg qtcharts  # 添加需要的额外模块
+
+    - name: Configure CMake
+      run: |
+        mkdir build
+        cd build
+        cmake .. -DCMAKE_BUILD_TYPE=${{ matrix.build_type }}
+
+    - name: Build
+      run: |
+        cd build
+        cmake --build . --config ${{ matrix.build_type }} -- -j2
+
+    - name: Test
+      run: |
+        cd build
+        ctest -C ${{ matrix.build_type }} --output-on-failure
+
+    - name: Package (Linux)
+      if: matrix.os == 'ubuntu-latest'
+      run: |
+        cd build
+        cpack -G DEB
+        mv *.deb ${{ matrix.artifact_name }}.deb
+        cp ${{ matrix.artifact_name }}.deb ${{ matrix.artifact_name }}-${{ github.sha }}.deb
+
+    - name: Package (Windows)
+      if: matrix.os == 'windows-latest'
+      run: |
+        cd build
+        cpack -G ZIP
+        mv *.zip ${{ matrix.artifact_name }}.zip
+        cp ${{ matrix.artifact_name }}.zip ${{ matrix.artifact_name }}-${{ github.sha }}.zip
+
+    - name: Package (macOS)
+      if: matrix.os == 'macos-latest'
+      run: |
+        cd build
+        cpack -G DragNDrop
+        mv *.dmg ${{ matrix.artifact_name }}.dmg
+        cp ${{ matrix.artifact_name }}.dmg ${{ matrix.artifact_name }}-${{ github.sha }}.dmg
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: ${{ matrix.artifact_name }}
+        path: build/${{ matrix.artifact_name }}*.*
+        retention-days: 30
+
+    - name: Upload to release
+      if: github.event_name == 'release' && github.event.action == 'created'
+      uses: svenstaro/upload-release-action@v2
+      with:
+        repo_token: ${{ secrets.GITHUB_TOKEN }}
+        file: build/${{ matrix.artifact_name }}*.*
+        tag: ${{ github.ref }}
+        overwrite: true
+        file_glob: true    
