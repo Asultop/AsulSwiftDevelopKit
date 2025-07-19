@@ -49,11 +49,12 @@ jobs:
     - name: Create binary package
       run: |
         mkdir dist
-        cp build/AsulSwiftDevelopKit.exe dist/  # 替换为实际的可执行文件名称
-        windeployqt dist/AsulSwiftDevelopKit.exe  # 收集Qt依赖项
+        cp build/your_executable_name.exe dist/  # 替换为实际的可执行文件名称
+        windeployqt dist/your_executable_name.exe  # 收集Qt依赖项
 
     - name: Upload artifacts
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@v4  # 更新到最新版本
       with:
         name: windows-build
         path: dist/
+        retention-days: 7  # 设置保留时间为7天
