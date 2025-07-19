@@ -3,6 +3,7 @@ project(AsulSwiftDevelopKit LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_EXTENSIONS OFF) # 不使用编译器特定的扩展
 
 # 查找Qt组件
 find_package(Qt6 COMPONENTS Core Gui Network Widgets REQUIRED)
