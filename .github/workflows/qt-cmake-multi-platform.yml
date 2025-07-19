@@ -77,20 +77,20 @@ jobs:
         sudo apt-get install -y patchelf desktop-file-utils libgl1-mesa-dev
 
     - name: Configure CMake
-      shell: ${{ matrix.shell }}
+      shell: ${{ matrix[runner.os].shell }}
       run: |
         mkdir build
         cd build
         cmake .. -G "${{ matrix.cmake_generator }}" -DCMAKE_BUILD_TYPE=Release
 
     - name: Build
-      shell: ${{ matrix.shell }}
+      shell: ${{ matrix[runner.os].shell }}
       run: |
         cd build
         cmake --build . --config Release
 
     - name: Create binary package
-      shell: ${{ matrix.shell }}
+      shell: ${{ matrix[runner.os].shell }}
       run: |
         mkdir dist
         if [ "${{ runner.os }}" = "Windows" ]; then
