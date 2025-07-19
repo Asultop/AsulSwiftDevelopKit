@@ -1,0 +1,59 @@
+name: Qt CMake Build
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:  # 允许手动触发工作流
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Install Qt
+      uses: jurplel/install-qt-action@v4
+      with:
+        version: '6.7.3'
+        host: 'windows'
+        target: 'desktop'
+        arch: 'mingw_64'
+        install-deps: true
+
+    - name: Set up MinGW
+      uses: egor-tensin/setup-mingw@v2
+      with:
+        platform: x64
+
+    - name: Verify MinGW installation
+      run: |
+        mingw32-make --version
+        g++ --version
+      shell: bash
+
+    - name: Configure CMake
+      run: |
+        mkdir build
+        cd build
+        cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release ..
+
+    - name: Build
+      run: |
+        cd build
+        cmake --build . --config Release -- -j$(nproc)
+
+    - name: Create binary package
+      run: |
+        mkdir dist
+        cp build/AsulSwiftDevelopKit.exe dist/  # 替换为实际的可执行文件名称
+        windeployqt dist/AsulSwiftDevelopKit.exe  # 收集Qt依赖项
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: windows-build
+        path: dist/
