@@ -16,7 +16,7 @@ jobs:
         include:
           - os: ubuntu-latest
             qt_host: 'linux'
-            qt_arch: 'gcc_64'
+            qt_arch: 'linux_gcc_64'
             artifact_name: linux-build
             install_cmd: sudo apt-get install -y patchelf
             deploy_cmd: linuxdeployqt dist/$PRODUCT_NAME -appimage -no-translations -qmldir=qml
