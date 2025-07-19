@@ -23,7 +23,7 @@ jobs:
         target: 'desktop'
         arch: 'mingw_64'
         install-deps: true
-        modules: qtbase qtwidgets qtnetwork  # 显式指定需要安装的Qt模块
+        # modules: qtbase qtwidgets qtnetwork  # 显式指定需要安装的Qt模块
 
     - name: Set up MinGW
       uses: egor-tensin/setup-mingw@v2
