@@ -24,10 +24,16 @@ jobs:
         arch: 'mingw_64'
         install-deps: true
 
-    - name: Set up MinGW
-      uses: egor-tensin/setup-mingw@v4
+    - name: Set up MinGW (修正版本)
+      uses: egor-tensin/setup-mingw@v2  # 使用存在的v2版本
       with:
         platform: x64
+
+    - name: Verify MinGW installation
+      run: |
+        mingw32-make --version
+        g++ --version
+      shell: bash
 
     - name: Configure CMake
       run: |
