@@ -24,8 +24,8 @@ jobs:
         arch: 'mingw_64'
         install-deps: true
 
-    - name: Set up MinGW (修正版本)
-      uses: egor-tensin/setup-mingw@v2  # 使用存在的v2版本
+    - name: Set up MinGW
+      uses: egor-tensin/setup-mingw@v2
       with:
         platform: x64
 
@@ -45,3 +45,15 @@ jobs:
       run: |
         cd build
         cmake --build . --config Release -- -j$(nproc)
+
+    - name: Create binary package
+      run: |
+        mkdir dist
+        cp build/AsulSwiftDevelopKit.exe dist/  # 替换为实际的可执行文件名称
+        windeployqt dist/AsulSwiftDevelopKit.exe  # 收集Qt依赖项
+
+    - name: Upload artifacts
+      uses: actions/upload-artifact@v3
+      with:
+        name: windows-build
+        path: dist/
