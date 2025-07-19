@@ -1,0 +1,15 @@
+<RCC>
+    <qresource prefix="/icon"/>
+    <qresource prefix="/">
+        <file>Sources/icon/favicon.ico</file>
+        <file>IDC/res.rc</file>
+        <file>IDC/uac.manifest</file>
+        <file>Sources/icon/splash_dark.png</file>
+        <file>Sources/icon/splash_light.png</file>
+        <file>Sources/icon/Home_Background.png</file>
+        <file>Sources/icon/github.png</file>
+        <file>Sources/icon/author.jpg</file>
+        <file>Sources/icon/wxpay-removebg-preview.png</file>
+        <file>Sources/icon/alipay-removebg-preview.png</file>
+    </qresource>
+</RCC>
