@@ -8,60 +8,55 @@ on:
   workflow_dispatch:
 
 jobs:
-
   build:
-    env:
-      product_name : ${{ secrets.REPO_PRODUCTNAME }}
-  
     runs-on: windows-latest
 
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
 
-    # 明确指定使用MinGW版本的Qt
     - name: Install Qt
       uses: jurplel/install-qt-action@v4.3.0
       with:
         version: '6.7.*'
         host: 'windows'
         target: 'desktop'
-        arch: 'win64_mingw'  # 确保使用MinGW版本
+        arch: 'win64_mingw'
         use-official: true
         aqtversion: '==3.1.19'
         email: ${{ secrets.QTEMAIL }}
         pw: ${{ secrets.QTPASSWD }}
 
-    # 设置MinGW环境
     - name: Set up MinGW
       uses: coffeebe4code/setup-mingw@v1-beta-2
       with:
         platform: x64
         version: 11.2.0
 
-    # 关键修改：明确指定使用MinGW编译器
     - name: Configure CMake
       shell: cmd
       run: |
         mkdir build
         cd build
         cmake .. -G "MinGW Makefiles" -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -DCMAKE_BUILD_TYPE=Release
-    # 关键修改：使用mingw32-make构建
+
     - name: Build
       shell: cmd
       run: |
         cd build
         mingw32-make
+
     - name: Create binary package
       shell: cmd
       run: |
         mkdir dist
-        copy build\$product_name.exe dist\
+        copy build\${{ secrets.REPO_PRODUCTNAME }}.exe dist\
         copy build\ElaWidgetTools.dll dist\
-        windeployqt dist\$product_name.exe
+        windeployqt dist\${{ secrets.REPO_PRODUCTNAME }}.exe
+
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
         name: windows-build
         path: dist/
-        retention-days: 30
+        retention-days: 7
