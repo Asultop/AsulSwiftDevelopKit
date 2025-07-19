@@ -54,8 +54,8 @@ jobs:
       shell: cmd
       run: |
         mkdir dist
-        copy build\ASUL.exe dist\
-        windeployqt dist\ASUL.exe
+        copy build\AsulSwiftDevelopKit.exe dist\
+        windeployqt dist\AsulSwiftDevelopKit.exe
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
