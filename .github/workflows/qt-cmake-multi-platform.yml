@@ -6,10 +6,13 @@ on:
   pull_request:
     branches: [ main ]
   workflow_dispatch:
-env:
-  product_name : ${{ secrets.REPO_PRODUCTNAME }}
+
 jobs:
+
   build:
+    env:
+      product_name : ${{ secrets.REPO_PRODUCTNAME }}
+  
     runs-on: windows-latest
 
     steps:
@@ -53,9 +56,9 @@ jobs:
       shell: cmd
       run: |
         mkdir dist
-        copy build\%product_name%.exe dist\
+        copy build\$product_name.exe dist\
         copy build\ElaWidgetTools.dll dist\
-        windeployqt dist\%product_name%.exe
+        windeployqt dist\$product_name.exe
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
