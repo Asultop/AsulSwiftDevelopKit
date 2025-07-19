@@ -45,7 +45,6 @@ jobs:
               mv $${APPIMAGE_NAME}-x86_64.AppImage dist/
             exe_ext: ""
             shell: bash
-
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
