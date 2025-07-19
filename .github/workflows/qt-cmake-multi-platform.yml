@@ -1,4 +1,4 @@
-name: Qt CMake Multi-Platform Build
+name: Qt CMake Build
 
 on:
   push:
@@ -6,108 +6,59 @@ on:
   pull_request:
     branches: [ main ]
   workflow_dispatch:
-
+env:
+  product_name : ${{ secrets.REPO_PRODUCTNAME }}
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [windows-latest, macos-latest, ubuntu-latest]
-        include:
-          - os: windows-latest
-            artifact_name: windows-build
-            qt_arch: win64_mingw
-            qt_host: windows
-            cmake_generator: "MinGW Makefiles"
-            deploy_cmd: windeployqt dist/%PRODUCT_NAME%.exe
-            exe_ext: .exe
-            shell: cmd
-          - os: macos-latest
-            artifact_name: macos-build
-            qt_arch: macos
-            qt_host: mac
-            cmake_generator: "Unix Makefiles"
-            deploy_cmd: macdeployqt dist/$PRODUCT_NAME.app -dmg -verbose=2
-            exe_ext: .app
-            shell: bash
-          - os: ubuntu-latest
-            artifact_name: linux-build
-            qt_arch: gcc_64
-            qt_host: linux
-            cmake_generator: "Unix Makefiles"
-            deploy_cmd: |
-              mkdir -p dist/$${APPIMAGE_NAME}.AppDir
-              cp build/$PRODUCT_NAME dist/$${APPIMAGE_NAME}.AppDir/AppRun
-              cp build/ElaWidgetTools.so dist/$${APPIMAGE_NAME}.AppDir/
-              wget -q https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
-              chmod +x linuxdeploy-x86_64.AppImage
-              ./linuxdeploy-x86_64.AppImage --appdir dist/$${APPIMAGE_NAME}.AppDir -e dist/$${APPIMAGE_NAME}.AppDir/AppRun -l dist/$${APPIMAGE_NAME}.AppDir/ElaWidgetTools.so --output appimage -d ${DESKTOP_FILE}
-              mv $${APPIMAGE_NAME}-x86_64.AppImage dist/
-            exe_ext: ""
-            shell: bash
-    env:
-      PRODUCT_NAME: ${{ secrets.REPO_PRODUCTNAME }}
+    runs-on: windows-latest
+
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
 
+    # 明确指定使用MinGW版本的Qt
     - name: Install Qt
       uses: jurplel/install-qt-action@v4.3.0
       with:
         version: '6.7.*'
-        host: ${{ matrix.qt_host }}
+        host: 'windows'
         target: 'desktop'
-        arch: ${{ matrix.qt_arch }}
+        arch: 'win64_mingw'  # 确保使用MinGW版本
         use-official: true
         aqtversion: '==3.1.19'
         email: ${{ secrets.QTEMAIL }}
         pw: ${{ secrets.QTPASSWD }}
 
-    - name: Set up MinGW (Windows only)
-      if: runner.os == 'Windows'
+    # 设置MinGW环境
+    - name: Set up MinGW
       uses: coffeebe4code/setup-mingw@v1-beta-2
       with:
         platform: x64
         version: 11.2.0
 
-    - name: Install AppImage dependencies (Linux only)
-      if: runner.os == 'Linux'
-      run: |
-        sudo apt-get update
-        sudo apt-get install -y patchelf desktop-file-utils libgl1-mesa-dev
-
+    # 关键修改：明确指定使用MinGW编译器
     - name: Configure CMake
-      shell: ${{ matrix[runner.os].shell }}
+      shell: cmd
       run: |
         mkdir build
         cd build
-        cmake .. -G "${{ matrix.cmake_generator }}" -DCMAKE_BUILD_TYPE=Release
-
+        cmake .. -G "MinGW Makefiles" -DCMAKE_C_COMPILER=gcc -DCMAKE_CXX_COMPILER=g++ -DCMAKE_BUILD_TYPE=Release
+    # 关键修改：使用mingw32-make构建
     - name: Build
-      shell: ${{ matrix[runner.os].shell }}
+      shell: cmd
       run: |
         cd build
-        cmake --build . --config Release
-
+        mingw32-make
     - name: Create binary package
-      shell: ${{ matrix[runner.os].shell }}
+      shell: cmd
       run: |
         mkdir dist
-        if [ "${{ runner.os }}" = "Windows" ]; then
-          copy build\%PRODUCT_NAME%${{ matrix.exe_ext }} dist\
-          copy build\ElaWidgetTools.dll dist\
-        elif [ "${{ runner.os }}" = "macOS" ]; then
-          cp -R build/$PRODUCT_NAME${{ matrix.exe_ext }} dist/
-        else
-          cp build/$PRODUCT_NAME${{ matrix.exe_ext }} dist/
-          cp build/ElaWidgetTools.so dist/
-          export APPIMAGE_NAME=$PRODUCT_NAME_$(date +%Y%m%d)
-        fi
-        ${{ matrix.deploy_cmd }}
-
+        copy build\%product_name%.exe dist\
+        copy build\ElaWidgetTools.dll dist\
+        windeployqt dist\%product_name%.exe
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ matrix.artifact_name }}
+        name: windows-build
         path: dist/
-        retention-days: 7    
+        retention-days: 30
