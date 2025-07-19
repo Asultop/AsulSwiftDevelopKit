@@ -23,6 +23,7 @@ jobs:
         target: 'desktop'
         arch: 'mingw_64'
         use-official: true
+        aqtversion: '==3.1.19'
         email: ${{ secrets.QTEMAIL }}
         pw: ${{ secrets.QTPASSWD }}
         # modules: qtbase qtwidgets qtnetwork  # 显式指定需要安装的Qt模块
