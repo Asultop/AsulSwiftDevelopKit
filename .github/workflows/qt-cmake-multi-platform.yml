@@ -45,7 +45,8 @@ jobs:
       run: |
         mkdir build
         cd build
-        cmake --build . --config Release -- -j%NUMBER_OF_PROCESSORS%
+        cmake ..
+        cmake --build . --config Release
 
     - name: Create binary package
       shell: cmd
