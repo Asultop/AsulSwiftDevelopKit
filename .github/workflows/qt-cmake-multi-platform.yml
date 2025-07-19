@@ -40,12 +40,6 @@ jobs:
         g++ --version
       shell: bash
 
-    - name: Configure CMake
-      run: |
-        mkdir build
-        cd build
-        cmake -G "MinGW Makefiles" -DCMAKE_BUILD_TYPE=Release ..
-
     - name: Build
       run: |
         cd build
