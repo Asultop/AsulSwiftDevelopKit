@@ -29,9 +29,10 @@ jobs:
         # modules: qtbase qtwidgets qtnetwork  # 显式指定需要安装的Qt模块
 
     - name: Set up MinGW
-      uses: egor-tensin/setup-mingw@v2
+      uses: coffeebe4code/setup-mingw@v1-beta-2
       with:
         platform: x64
+        version: 11.2.0
 
     - name: Verify MinGW installation
       run: |
