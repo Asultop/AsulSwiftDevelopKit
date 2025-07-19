@@ -51,7 +51,7 @@ set(RESOURCES
 qt_add_resources(RESOURCE_FILES ${RESOURCES})
 
 # 可执行文件
-add_executable(${PROJECT_NAME}
+add_executable(${PROJECT_NAME} WIN32
     ${SOURCES}
     ${HEADERS}
     ${RESOURCE_FILES}
