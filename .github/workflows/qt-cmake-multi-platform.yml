@@ -43,6 +43,7 @@ jobs:
     - name: Build
       shell: cmd
       run: |
+        mkdir build
         cd build
         cmake --build . --config Release -- -j%NUMBER_OF_PROCESSORS%
 
