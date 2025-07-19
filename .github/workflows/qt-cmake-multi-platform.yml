@@ -18,11 +18,12 @@ jobs:
     - name: Install Qt
       uses: jurplel/install-qt-action@v4
       with:
-        version: '6.7.*'
+        version: '6.7.3'
         host: 'windows'
         target: 'desktop'
         arch: 'mingw_64'
         install-deps: true
+        modules: qtbase qtwidgets qtnetwork  # 显式指定需要安装的Qt模块
 
     - name: Set up MinGW
       uses: egor-tensin/setup-mingw@v2
@@ -49,12 +50,12 @@ jobs:
     - name: Create binary package
       run: |
         mkdir dist
-        cp build/your_executable_name.exe dist/  # 替换为实际的可执行文件名称
-        windeployqt dist/your_executable_name.exe  # 收集Qt依赖项
+        cp build/ASUL.exe dist/  # 替换为实际的可执行文件名称
+        windeployqt dist/ASUL.exe  # 收集Qt依赖项
 
     - name: Upload artifacts
-      uses: actions/upload-artifact@v4  # 更新到最新版本
+      uses: actions/upload-artifact@v4
       with:
         name: windows-build
         path: dist/
-        retention-days: 7  # 设置保留时间为7天
+        retention-days: 7
