@@ -19,7 +19,7 @@ jobs:
             qt_arch: win64_mingw
             qt_host: windows
             cmake_generator: "MinGW Makefiles"
-            deploy_cmd: windeployqt dist/${{ secretsREPO_PRODUCTNAME }}.exe
+            deploy_cmd: windeployqt dist/${{ secrets.REPO_PRODUCTNAME }}.exe
             exe_ext: .exe
             shell: cmd
           - os: macos-latest
@@ -27,7 +27,7 @@ jobs:
             qt_arch: macos
             qt_host: mac
             cmake_generator: "Unix Makefiles"
-            deploy_cmd: macdeployqt dist/${{ secretsREPO_PRODUCTNAME }}.app -dmg -verbose=2
+            deploy_cmd: macdeployqt dist/${{ secrets.REPO_PRODUCTNAME }}.app -dmg -verbose=2
             exe_ext: .app
             shell: bash
           - os: ubuntu-latest
@@ -37,7 +37,7 @@ jobs:
             cmake_generator: "Unix Makefiles"
             deploy_cmd: |
               mkdir -p dist/$${APPIMAGE_NAME}.AppDir
-              cp build/${{ secretsREPO_PRODUCTNAME }} dist/$${APPIMAGE_NAME}.AppDir/AppRun
+              cp build/${{ secrets.REPO_PRODUCTNAME }} dist/$${APPIMAGE_NAME}.AppDir/AppRun
               cp build/ElaWidgetTools.so dist/$${APPIMAGE_NAME}.AppDir/
               wget -q https://github.com/linuxdeploy/linuxdeploy/releases/download/continuous/linuxdeploy-x86_64.AppImage
               chmod +x linuxdeploy-x86_64.AppImage
@@ -45,10 +45,6 @@ jobs:
               mv $${APPIMAGE_NAME}-x86_64.AppImage dist/
             exe_ext: ""
             shell: bash
-
-    env:
-      REPO_PRODUCTNAME: MyApplication
-      DESKTOP_FILE: ${{ github.workspace }}/assets/myapp.desktop
 
     steps:
     - name: Checkout code
@@ -97,14 +93,14 @@ jobs:
       run: |
         mkdir dist
         if [ "${{ runner.os }}" = "Windows" ]; then
-          copy build\${{ secretsREPO_PRODUCTNAME }}${{ matrix.exe_ext }} dist\
+          copy build\${{ secrets.REPO_PRODUCTNAME }}${{ matrix.exe_ext }} dist\
           copy build\ElaWidgetTools.dll dist\
         elif [ "${{ runner.os }}" = "macOS" ]; then
-          cp -R build/${{ secretsREPO_PRODUCTNAME }}${{ matrix.exe_ext }} dist/
+          cp -R build/${{ secrets.REPO_PRODUCTNAME }}${{ matrix.exe_ext }} dist/
         else
-          cp build/${{ secretsREPO_PRODUCTNAME }}${{ matrix.exe_ext }} dist/
+          cp build/${{ secrets.REPO_PRODUCTNAME }}${{ matrix.exe_ext }} dist/
           cp build/ElaWidgetTools.so dist/
-          export APPIMAGE_NAME=${{ secretsREPO_PRODUCTNAME }}_$(date +%Y%m%d)
+          export APPIMAGE_NAME=${{ secrets.REPO_PRODUCTNAME }}_$(date +%Y%m%d)
         fi
         ${{ matrix.deploy_cmd }}
 
