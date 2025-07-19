@@ -55,6 +55,7 @@ jobs:
       run: |
         mkdir dist
         copy build\AsulSwiftDevelopKit.exe dist\
+        copy build\ElaWidgetTools.dll dist\
         windeployqt dist\AsulSwiftDevelopKit.exe
 
     - name: Upload artifacts
