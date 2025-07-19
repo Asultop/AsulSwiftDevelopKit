@@ -54,10 +54,10 @@ int main(int argc, char *argv[])
 
             // 保存截图到文件
             if (screenshot.save(filePath, "PNG")) {
-                QLOG_DEBUG() << "[Mica] Screenshot saved as" << filePath;
+                // QLOG_DEBUG() << "[Mica] Screenshot saved as" << filePath;
 
             } else {
-                QLOG_DEBUG() << "[Mica] Failed to save screenshot";
+                // QLOG_DEBUG() << "[Mica] Failed to save screenshot";
             }
         }
         eApp->setElaMicaImagePath(filePath);
