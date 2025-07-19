@@ -35,21 +35,23 @@ jobs:
         version: 11.2.0
 
     - name: Verify MinGW installation
+      shell: cmd
       run: |
         mingw32-make --version
         g++ --version
-      shell: bash
 
     - name: Build
+      shell: cmd
       run: |
         cd build
-        cmake --build . --config Release -- -j$(nproc)
+        cmake --build . --config Release -- -j%NUMBER_OF_PROCESSORS%
 
     - name: Create binary package
+      shell: cmd
       run: |
         mkdir dist
-        cp build/ASUL.exe dist/  # 替换为实际的可执行文件名称
-        windeployqt dist/ASUL.exe  # 收集Qt依赖项
+        copy build\ASUL.exe dist\
+        windeployqt dist\ASUL.exe
 
     - name: Upload artifacts
       uses: actions/upload-artifact@v4
