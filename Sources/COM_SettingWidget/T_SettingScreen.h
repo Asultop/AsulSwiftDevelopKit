@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "../BaseScrollPage.h"
+#include "../CTL_AsulComboBox/AsulComboBox.h"
 class T_SettingScreen : public BaseScrollPage
 {
     Q_OBJECT

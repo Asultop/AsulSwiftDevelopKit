@@ -1,0 +1,10 @@
+{
+    "programName": "AsulSwiftDevelopKit",
+    "targetName": "AsulSwiftDevelopKit",
+    "programOrganization": "Asul",
+    "programVersion": "1.0.0",
+    "programDescription": "A development kit for Swift programming language",
+    "programAuthor": "Asul",
+    "programLicense": "MIT",
+    "programRepository": "https://github.com/AsulTop/AsulSwiftDevelopKit"
+}

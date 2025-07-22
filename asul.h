@@ -4,17 +4,30 @@
 #include <ElaWindow.h>
 #include "Sources/BaseInclude.h"
 
+
+#define INSTALL_SAMPLE_PAGE(n) \
+    class Sample##n : public BaseScrollPage {}; \
+    InstallPage_Expander(("样例")+QString::number(i), Sample##n, Sample##ExpKey, ElaIconType::DiceD6);
+
+#define AddExpanderNode(Label , ExpandKey,ElaIcon) \
+    QString ExpandKey##ExpKey; \
+    this->addExpanderNode(Label,ExpandKey##ExpKey,ElaIcon);
+
 #define InstallPage(Label,Class,ElaIcon) \
     Class *Class##Page = new Class(); \
     this->addPageNode(Label, Class##Page, ElaIcon);
+
+#define InstallPage_Expander(Label,Class,ExpandKey,ElaIcon) \
+    Class *Class##Page = new Class(); \
+    this->addPageNode(Label, Class##Page,ExpandKey, ElaIcon);
 
 #define InstallFooter(Label,Class,_Key,ElaIcon) \
     Class *Class##FooterPage = new Class(); \
     this->addFooterNode(Label,Class##FooterPage,_Key,0,ElaIcon)
 
-#define InstallAboutFooter(Class,_Key) \
+#define InstallAboutFooter(Label,Class,_Key) \
     Class *Class##AboutPage = new Class(); \
-    this->addFooterNode(tr("关于"),nullptr,_Key,0,ElaIconType::User); \
+    this->addFooterNode(Label,nullptr,_Key,0,ElaIconType::User); \
     connect(this,&ElaWindow::navigationNodeClicked,[=](ElaNavigationType::NavigationNodeType nodeType, QString nodeKey) { \
         Q_UNUSED(nodeType); \
         if (_Key == nodeKey) { \

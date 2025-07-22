@@ -5,6 +5,13 @@
 #include "stdafx.h"
 #include "singleton.h"
 #include <QTemporaryDir>
+#include <QTranslator>
+#include <QSettings>
+#include <QJsonArray>
+#include <QJsonParseError>
+#include <QJsonDocument>
+#include <QJsonObject>
+
 #define gSets GlobalSettings::getInstance()
 class GlobalSettings : public QObject
 {
@@ -17,10 +24,24 @@ class GlobalSettings : public QObject
     Q_PROPERTY_CREATE(bool,EnableThemeColorSyncWithSystem);
     Q_PROPERTY_CREATE(bool,EnableThemeModeSyncWithSystem);
     Q_PROPERTY_CREATE(QString,EnableDisplayMode);
+    Q_PROPERTY_CREATE(QStringList,SupportedLang);
+
+    Q_PROPERTY_CREATE(QSettings*,RegisterSettings);
+public:
+    QMap<QString,QTranslator*> translators;
 public:
     explicit GlobalSettings(QObject *parent = nullptr);
     void init();
     void destroy();
+    QString getProgramName();
+    QString getProgramVersion();
+    QString getProgramDescription();
+    QString getProgramAuthor();
+    QString getProgramLicense();
+    QString getProgramRepository();
+    QString getProgramOrganization();
+private:
+    QJsonObject jsonObj;
 signals:
 };
 

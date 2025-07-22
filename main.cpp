@@ -21,6 +21,17 @@ int main(int argc, char *argv[])
     gSets->init();
     //跟随系统主题色
 
+    auto TranslationInstallation=[=](bool e){
+        if(!e) return;
+        QStringList SupportedLang=gSets->getSupportedLang();
+
+        QString lang=gSets->getRegisterSettings()->value("lang").toString();
+        if(!lang.isEmpty()){
+            qApp->installTranslator(gSets->translators[lang]);
+        }
+    };
+    TranslationInstallation(true);
+
 
 
     auto EnableSystemThemeColor=[=](bool e){
@@ -72,6 +83,8 @@ int main(int argc, char *argv[])
     EnableSystemThemeMode(false);
     EnableSplashScreen(true);
     CaptureScreenShotAndEnableMica(true);
+
+
 
     Asul w;
     w.show();

@@ -54,13 +54,13 @@ T_Home::T_Home(QWidget *parent)
     setTitleVisible(false);
     setContentsMargins(2, 2, 0, 0);
     // 标题卡片区域
-    ElaText* desText = new ElaText("FluentUI For QWidget", this);
+    ElaText* desText = new ElaText("                    ", this);
     desText->setTextPixelSize(18);
-    ElaText* titleText = new ElaText("AsulSwiftDevelopKit", this);
+    ElaText* titleText = new ElaText(gSets->getProgramName(), this);
     titleText->setTextPixelSize(35);
 
     QVBoxLayout* titleLayout = new QVBoxLayout();
-    titleLayout->setContentsMargins(30, 60, 0, 0);
+    titleLayout->setContentsMargins(30, 60, 10, 0);
     titleLayout->setAlignment(Qt::AlignRight);
     titleLayout->addWidget(desText);
     titleLayout->addWidget(titleText);
@@ -77,13 +77,13 @@ T_Home::T_Home(QWidget *parent)
     urlCard1->setTitlePixelSize(17);
     urlCard1->setTitleSpacing(25);
     urlCard1->setSubTitleSpacing(13);
-    urlCard1->setUrl("https://github.com/AsulTop/AsulSwiftDevelopKit");
+    urlCard1->setUrl(gSets->getProgramRepository());
 
     urlCard1->setCardPixmap(QPixmap(":/Sources/icon/github.png"));
     urlCard1->setTitle("ASDK Github");
     urlCard1->setSubTitle("Use AsulSwiftDevelopKit To Create A Cool Project");
     ElaToolTip* urlCard1ToolTip = new ElaToolTip(urlCard1);
-    urlCard1ToolTip->setToolTip("https://github.com/AsulTop/AsulSwiftDevelopKit");
+    urlCard1ToolTip->setToolTip(gSets->getProgramRepository());
     ElaAcrylicUrlCard* urlCard2 = new ElaAcrylicUrlCard(this);
     urlCard2->setCardPixmapSize(QSize(62, 62));
     urlCard2->setFixedSize(195, 225);
@@ -92,7 +92,7 @@ T_Home::T_Home(QWidget *parent)
     urlCard2->setSubTitleSpacing(13);
     urlCard2->setUrl("https://space.bilibili.com/511843089");
     urlCard2->setCardPixmap(QPixmap(":/Sources/icon/author.jpg"));
-    urlCard2->setTitle("Asul");
+    urlCard2->setTitle(gSets->getProgramAuthor());
     urlCard2->setSubTitle("3191522462@qq.com");
 
     ElaScrollArea* cardScrollArea = new ElaScrollArea(this);
@@ -130,13 +130,13 @@ T_Home::T_Home(QWidget *parent)
     // ElaFlowLayout
     ElaPopularCard* homeCard = new ElaPopularCard(this);
     connect(homeCard, &ElaPopularCard::popularCardButtonClicked, this, [=]() {
-        QDesktopServices::openUrl(QUrl("https://github.com/AsulTop/AsulSwiftDevelopKit"));
+        QDesktopServices::openUrl(QUrl(gSets->getProgramRepository()));
     });
     homeCard->setCardPixmap(QPixmap(":/Sources/icon/github.png"));
     homeCard->setTitle("ASDK Github");
-    homeCard->setSubTitle("AsulSwiftDevelopKit");
+    homeCard->setSubTitle(gSets->getProgramName());
     homeCard->setInteractiveTips("转到Github");
-    homeCard->setDetailedText("AsulSwiftDevelopKit 辅助快速开发 ElaWidgetTool 提供的框架");
+    homeCard->setDetailedText(gSets->getProgramDescription());
 
     ElaPopularCard* homeCard1 = new ElaPopularCard(this);
     connect(homeCard1, &ElaPopularCard::popularCardButtonClicked, this, [=]() {
@@ -153,10 +153,10 @@ T_Home::T_Home(QWidget *parent)
     else
         homeCard1->setCardPixmap(QPixmap(":/Sources/icon/splash_dark.png"));
     homeCard1->setTitle("ASDK Settings");
-    homeCard1->setSubTitle("AsulSwiftDevelopKit");
+    homeCard1->setSubTitle(gSets->getProgramName());
     homeCard1->setCardButtontext("跳转");
     homeCard1->setInteractiveTips("转到设置");
-    homeCard1->setDetailedText("AsulSwiftDevelopKit 快速设置界面");
+    homeCard1->setDetailedText(gSets->getProgramName()+" 快速设置界面");
 
 
     ElaFlowLayout* flowLayout = new ElaFlowLayout(0, 5, 5);

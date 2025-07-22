@@ -7,14 +7,14 @@
 #include "ElaImageCard.h"
 #include "ElaText.h"
 #include "ElaTheme.h"
-
+#include "../GlobalSettings.h"
 T_About::T_About (QWidget* parent)
     : ElaWidget (parent)
 {
     // 清空窗口标题，避免标题栏显示
     this->setWindowTitle ("");
 
-    // setWindowModality(Qt::ApplicationModal);
+    setWindowModality(Qt::ApplicationModal);
     setWindowButtonFlags(ElaAppBarType::CloseButtonHint);
 
     // 创建内容区域
@@ -32,7 +32,7 @@ T_About::T_About (QWidget* parent)
     });
 
     // 版本信息
-    ElaText* versionText = new ElaText ("AsulSwiftDevelopKit [V1.0.0]", this);
+    ElaText* versionText = new ElaText (QString("%1 [%2]").arg(gSets->getProgramName()).arg(gSets->getProgramVersion()), this);
     QFont versionTextFont = versionText->font ();
     versionTextFont.setWeight (QFont::Bold);
     versionText->setFont (versionTextFont);
@@ -40,7 +40,7 @@ T_About::T_About (QWidget* parent)
     versionText->setTextPixelSize (22); // 增大字体尺寸
 
     // 授权信息
-    ElaText* licenseText = new ElaText (tr ("MIT 授权协议"), this);
+    ElaText* licenseText = new ElaText (gSets->getProgramLicense()+ tr (" 授权协议"), this);
     licenseText->setWordWrap (false);
     licenseText->setTextPixelSize (16);
 

@@ -1,12 +1,26 @@
 cmake_minimum_required(VERSION 3.16)
-project(AsulSwiftDevelopKit LANGUAGES CXX)
+
+
+set(JSON_FILE_PATH "${CMAKE_SOURCE_DIR}/PropertySetting/Program_Property.json")
+file(READ ${JSON_FILE_PATH} JSON_CONTENTS)
+set(TARGET_KEY "targetName")
+string(REGEX MATCH "\"${TARGET_KEY}\": *\"([^\"]+)\"" _ "${JSON_CONTENTS}")
+if(CMAKE_MATCH_1)
+    set(EXTRACTED_VALUE "${CMAKE_MATCH_1}")
+    message(STATUS "Success: ${EXTRACTED_VALUE}")
+else()
+    message(FATAL_ERROR "Error: ${TARGET_KEY}")
+endif()
+
+
+project(${EXTRACTED_VALUE} LANGUAGES CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF) # 不使用编译器特定的扩展
 
 # 查找Qt组件
-find_package(Qt6 COMPONENTS Core Gui Network Widgets REQUIRED)
+find_package(Qt6 COMPONENTS Core Gui Network Widgets LinguistTools REQUIRED)
 if(Qt6_FOUND)
     set(QT_LIBRARIES Qt6::Core Qt6::Gui Qt6::Network Qt6::Widgets)
 else()
@@ -26,6 +40,9 @@ set(SOURCES
     Sources/COM_SplashWindow/T_SplashScreen.cpp
     Sources/GlobalFunc.cpp
     Sources/GlobalSettings.cpp
+    Sources/AsulApplication.cpp
+    Sources/COM_SettingWidget/T_SettingScreen.cpp
+    Sources/COM_AboutWidget/T_About.cpp
     main.cpp
     asul.cpp
 )
@@ -37,6 +54,10 @@ set(HEADERS
     Sources/COM_SplashWindow/T_SplashScreen.h
     Sources/GlobalFunc.h
     Sources/GlobalSettings.h
+    Sources/AsulApplication.h
+    Sources/COM_SettingWidget/T_SettingScreen.h
+    Sources/COM_AboutWidget/T_About.h
+    Def.h
     asul.h
     singleton.h
     stdafx.h
@@ -46,20 +67,25 @@ set(HEADERS
 set(RESOURCES
     AsulKitSrc.qrc
 )
+set(TS_FILES
+    ${CMAKE_CURRENT_SOURCE_DIR}/translations/AsulKit_zh_CN.ts
+    ${CMAKE_CURRENT_SOURCE_DIR}/translations/AsulKit_en_US.ts
+)
 
 # 添加资源文件
 qt_add_resources(RESOURCE_FILES ${RESOURCES})
+qt6_create_translation(QM_FILES ${CMAKE_SOURCE_DIR} ${TS_FILES})
 
+# qt6_add_translations(${PROJECT_NAME} ${TS_FILES})
 # 可执行文件
 add_executable(${PROJECT_NAME} WIN32
     ${SOURCES}
     ${HEADERS}
     ${RESOURCE_FILES}
-    Sources/AsulApplication.h Sources/AsulApplication.cpp
-    Sources/COM_SettingWidget/T_SettingScreen.h Sources/COM_SettingWidget/T_SettingScreen.cpp
-
-    Def.h
-    Sources/COM_AboutWidget/T_About.h Sources/COM_AboutWidget/T_About.cpp
+    ${TS_FILES}
+    ${QM_FILES}
+    Sources/CTL_AsulComboBox/AsulComboBox.h
+    Sources/CTL_AsulComboBox/AsulComboBox.cpp
 
 )
 
@@ -105,4 +131,7 @@ endif()
 # 安装设置
 install(TARGETS ${PROJECT_NAME}
     RUNTIME DESTINATION bin
+)
+install(FILES ${QM_FILES} 
+    DESTINATION translations
 )
