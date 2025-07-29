@@ -19,17 +19,17 @@
         <translation>Home</translation>
     </message>
     <message>
-        <location filename="../asul.cpp" line="45"/>
+        <location filename="../asul.cpp" line="42"/>
         <source>样例组</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../asul.cpp" line="49"/>
+        <location filename="../asul.cpp" line="47"/>
         <source>关于</source>
         <translation>About</translation>
     </message>
     <message>
-        <location filename="../asul.cpp" line="51"/>
+        <location filename="../asul.cpp" line="48"/>
         <source>设置</source>
         <translation>Settings</translation>
     </message>
