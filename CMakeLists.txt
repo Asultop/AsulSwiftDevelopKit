@@ -44,6 +44,10 @@ set(SOURCES
     Sources/COM_SplashWindow/T_SplashScreen.cpp
     Sources/COM_SettingWidget/T_SettingScreen.cpp
     Sources/COM_AboutWidget/T_About.cpp
+    Sources/COM_IconWidget/T_Icon.cpp
+    Sources/COM_IconWidget/T_IconDelegate.cpp
+    Sources/COM_IconWidget/T_IconModel.cpp
+
     Sources/CTL_AsulComboBox/AsulComboBox.cpp
 
     Sources/MainEntry/main.cpp
@@ -60,6 +64,10 @@ set(HEADERS
     Sources/COM_SplashWindow/T_SplashScreen.h
     Sources/COM_SettingWidget/T_SettingScreen.h
     Sources/COM_AboutWidget/T_About.h
+    Sources/COM_IconWidget/T_Icon.h
+    Sources/COM_IconWidget/T_IconDelegate.h
+    Sources/COM_IconWidget/T_IconModel.h
+
     Sources/CTL_AsulComboBox/AsulComboBox.h
     
     Sources/MainEntry/Def.h

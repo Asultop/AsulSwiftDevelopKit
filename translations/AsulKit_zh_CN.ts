@@ -4,32 +4,37 @@
 <context>
     <name>Asul</name>
     <message>
-        <location filename="../Sources/MainEntry/asul.cpp" line="17"/>
+        <location filename="../Sources/MainEntry/asul.cpp" line="18"/>
         <source>关闭</source>
         <translation>关闭</translation>
     </message>
     <message>
-        <location filename="../Sources/MainEntry/asul.cpp" line="17"/>
+        <location filename="../Sources/MainEntry/asul.cpp" line="18"/>
         <source>确定要关闭此程序?</source>
         <translation>确定要关闭此程序?</translation>
     </message>
     <message>
-        <location filename="../Sources/MainEntry/asul.cpp" line="38"/>
+        <location filename="../Sources/MainEntry/asul.cpp" line="39"/>
         <source>主页</source>
         <translation>主页</translation>
     </message>
     <message>
-        <location filename="../Sources/MainEntry/asul.cpp" line="39"/>
+        <location filename="../Sources/MainEntry/asul.cpp" line="40"/>
+        <source>图标</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Sources/MainEntry/asul.cpp" line="41"/>
         <source>样例组</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Sources/MainEntry/asul.cpp" line="43"/>
+        <location filename="../Sources/MainEntry/asul.cpp" line="45"/>
         <source>关于</source>
         <translation>关于</translation>
     </message>
     <message>
-        <location filename="../Sources/MainEntry/asul.cpp" line="44"/>
+        <location filename="../Sources/MainEntry/asul.cpp" line="46"/>
         <source>设置</source>
         <translation>设置</translation>
     </message>

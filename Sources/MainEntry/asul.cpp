@@ -4,6 +4,7 @@
 #include "../COM_HomeWidget/T_Home.h"
 #include "../COM_SettingWidget/T_SettingScreen.h"
 #include "../COM_AboutWidget/T_About.h"
+#include "../COM_IconWidget/T_Icon.h"
 
 #include "../Global/GlobalSettings.h"
 #include "../Global/GlobalFunc.h"
@@ -36,6 +37,7 @@ Asul::Asul(QWidget *parent) : ElaWindow(parent) {
                      ));
   this->setNavigationBarDisplayMode(ElaNavigationType::Compact); //SetNavigationBarDisplayMode
   InstallPage(tr("主页"), T_Home, ElaIconType::House);
+  InstallPage(tr("图标"),T_Icon,ElaIconType::TicketsSimple);
   AddExpanderNode(tr("样例组"), Sample, ElaIconType::DiceD6);
   for(int i=1;i<=15;i++){
     INSTALL_SAMPLE_PAGE(i);

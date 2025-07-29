@@ -77,14 +77,12 @@ int main(int argc, char *argv[])
 
 
     //-------------------------------------
-    EnableSystemThemeColor(false);
-    EnableSystemThemeMode(false);
-    EnableSplashScreen(true);
-    CaptureScreenShotAndEnableMica(true);
+    EnableSystemThemeColor(false); //不启用系统主题色
+    EnableSystemThemeMode(false); //不启用系统主题模式
+    EnableSplashScreen(true); //启用启动细节面板
+    CaptureScreenShotAndEnableMica(true); //启用截图并启用云母效果
 
-
-
-    Asul w;
+    Asul w; 
     w.show();
 
     QTimer::singleShot(200,[=](){
