@@ -18,17 +18,17 @@ jobs:
     - name: Install Qt
       uses: jurplel/install-qt-action@v4.3.0
       with:
-        version: '6.7.*'
+        version: '6.7.3' #6.7.* -> 6.7.3
         host: 'windows'
         target: 'desktop'
         arch: 'win64_mingw'
-        # use-official: true
         aqtversion: '==3.1.19'
-        # email: ${{ secrets.QTEMAIL }}
-        # pw: ${{ secrets.QTPASSWD }}
+        # use-official: true 
+        # email: ${{ secrets.QTEMAIL }} #Environment-Secrets !
+        # pw: ${{ secrets.QTPASSWD }} #Environment-Sercrets !
 
-    - name: Set up MinGW
-      uses: coffeebe4code/setup-mingw@v1-beta-2
+    - name: Set up MinGW With New Feature
+      uses: Asultop/setup-mingw@v2
       with:
         platform: x64
         version: 11.2.0
@@ -48,12 +48,9 @@ jobs:
 
     - name: Create binary package
       shell: cmd
-      
       run: |
-        mkdir dist
-
         set "PRODUCT_NAME=AsulSwiftDevelopKit"
-        
+        mkdir dist
         copy build\%PRODUCT_NAME%.exe dist\
         copy build\ElaWidgetTools.dll dist\
         windeployqt dist\%PRODUCT_NAME%.exe
