@@ -28,7 +28,7 @@ jobs:
         # pw: ${{ secrets.QTPASSWD }} #Environment-Sercrets !
 
     - name: Set up MinGW With New Feature
-      uses: Asultop/setup-mingw@v2
+      uses: Asultop/setup-mingw@v2.1
       with:
         platform: x64
         version: 11.2.0
