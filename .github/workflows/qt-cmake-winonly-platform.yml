@@ -22,10 +22,10 @@ jobs:
         host: 'windows'
         target: 'desktop'
         arch: 'win64_mingw'
-        use-official: true
+        # use-official: true
         aqtversion: '==3.1.19'
-        email: ${{ secrets.QTEMAIL }}
-        pw: ${{ secrets.QTPASSWD }}
+        # email: ${{ secrets.QTEMAIL }}
+        # pw: ${{ secrets.QTPASSWD }}
 
     - name: Set up MinGW
       uses: coffeebe4code/setup-mingw@v1-beta-2
