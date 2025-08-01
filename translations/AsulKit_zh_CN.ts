@@ -19,29 +19,17 @@
         <translation>主页</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../Sources/MainEntry/asul.cpp" line="42"/>
-=======
-        <location filename="../asul.cpp" line="42"/>
->>>>>>> 24f79ab45d08efef4fb3172a32f48574b7af7848
         <source>样例组</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../Sources/MainEntry/asul.cpp" line="47"/>
-=======
-        <location filename="../asul.cpp" line="47"/>
->>>>>>> 24f79ab45d08efef4fb3172a32f48574b7af7848
         <source>关于</source>
         <translation>关于</translation>
     </message>
     <message>
-<<<<<<< HEAD
         <location filename="../Sources/MainEntry/asul.cpp" line="48"/>
-=======
-        <location filename="../asul.cpp" line="48"/>
->>>>>>> 24f79ab45d08efef4fb3172a32f48574b7af7848
         <source>设置</source>
         <translation>设置</translation>
     </message>
