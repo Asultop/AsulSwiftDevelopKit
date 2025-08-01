@@ -183,7 +183,7 @@ ElaScrollPageArea * GlobalFunc::GenerateArea(QWidget *parent,ElaText * title, El
     font.setBold(true);
     title->setFont(font);
     title->setTextPixelSize(15);
-    subtitle->setTextPixelSize(11);
+    subtitle->setTextPixelSize(12);
 
     configVLayout->addWidget(title,7);
     configVLayout->addWidget(subtitle,4);
@@ -212,7 +212,7 @@ ElaScrollPageArea * GlobalFunc::GenerateArea(QWidget *parent,ElaIconType::IconNa
     font.setBold(true);
     title->setFont(font);
     title->setTextPixelSize(15);
-    subtitle->setTextPixelSize(11);
+    subtitle->setTextPixelSize(12);
 
     configVLayout->addWidget(title,7);
     configVLayout->addWidget(subtitle,4);
@@ -252,7 +252,7 @@ ElaScrollPageArea * GlobalFunc::GenerateArea(QWidget *parent,QString iconPath,El
     font.setBold(true);
     title->setFont(font);
     title->setTextPixelSize(15);
-    subtitle->setTextPixelSize(11);
+    subtitle->setTextPixelSize(12);
 
     configVLayout->addWidget(title,7);
     configVLayout->addWidget(subtitle,4);

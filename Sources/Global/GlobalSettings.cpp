@@ -32,7 +32,9 @@ void GlobalSettings::init()
 
     foreach(QString lang,this->getSupportedLang()){
         translators[lang] = new QTranslator(this);
-        translators[lang]->load(QString(":/translations/AsulKit_%1.qm").arg(lang));
+        if(translators[lang]->load(QString(":/translations/AsulKit_%1.qm").arg(lang))){
+            //ToDo: Need Do Something But Not Now; 
+        }
     }
 
 
