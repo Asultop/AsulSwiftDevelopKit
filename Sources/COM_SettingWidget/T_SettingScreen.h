@@ -2,7 +2,7 @@
 #define T_SETTINGSCREEN_H
 
 #include <QWidget>
-#include "../BaseScrollPage.h"
+#include "../SystemKit/BaseScrollPage.h"
 #include "../CTL_AsulComboBox/AsulComboBox.h"
 class T_SettingScreen : public BaseScrollPage
 {

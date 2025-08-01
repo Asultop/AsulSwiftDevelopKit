@@ -1,12 +1,12 @@
 #include "asul.h"
 #include "Def.h"
-#include "Sources/BaseScrollPage.h"
-#include "Sources/COM_HomeWidget/T_Home.h"
-#include "Sources/COM_SettingWidget/T_SettingScreen.h"
-#include "Sources/COM_AboutWidget/T_About.h"
+#include "../SystemKit/BaseScrollPage.h"
+#include "../COM_HomeWidget/T_Home.h"
+#include "../COM_SettingWidget/T_SettingScreen.h"
+#include "../COM_AboutWidget/T_About.h"
 
-#include "Sources/GlobalSettings.h"
-#include "Sources/GlobalFunc.h"
+#include "../Global/GlobalSettings.h"
+#include "../Global/GlobalFunc.h"
 #include <ElaApplication.h>
 
 
@@ -39,7 +39,7 @@ Asul::Asul(QWidget *parent) : ElaWindow(parent) {
 
 
   InstallPage(tr("主页"), T_Home, ElaIconType::House);
-  AddExpanderNode(tr("样例组"), Sample, ElaIconType::DiceD12);
+  AddExpanderNode(tr("样例组"), Sample, ElaIconType::DiceD6);
   for(int i=1;i<=50;i++){
     INSTALL_SAMPLE_PAGE(i);
   }

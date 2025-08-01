@@ -7,10 +7,11 @@
 #include "ElaPopularCard.h"
 #include "ElaFlowLayout.h"
 #include "QDesktopServices"
-#include "../BaseInclude.h"
-#include "../GlobalFunc.h"
+#include "../SystemKit/BaseInclude.h"
+
+#include "../Global/GlobalFunc.h"
 #include <ElaInteractiveCard.h>
-#include "../GlobalSettings.h"
+#include "../Global/GlobalSettings.h"
 
 
 T_Home::T_Home(QWidget *parent)

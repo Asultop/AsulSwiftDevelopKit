@@ -2,7 +2,7 @@
 #define ASUL_H
 
 #include <ElaWindow.h>
-#include "Sources/BaseInclude.h"
+#include "../SystemKit/BaseInclude.h"
 
 
 #define INSTALL_SAMPLE_PAGE(n) \

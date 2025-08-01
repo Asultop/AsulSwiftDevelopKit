@@ -3,8 +3,8 @@
 
 #include <QObject>
 #include <QWidget>
-#include "../BaseInclude.h"
-#include "../BaseScrollpage.h"
+#include "../SystemKit/BaseInclude.h"
+#include "../SystemKit/BaseScrollpage.h"
 #include <QTextBrowser>
 #include <ElaWindow.h>
 

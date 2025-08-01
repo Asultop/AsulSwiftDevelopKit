@@ -3,10 +3,10 @@
 #include <QApplication>
 #include <ElaApplication.h>
 #include <QStyleHints>
-#include "Sources/COM_SplashWindow/T_SplashScreen.h"
-#include "Sources/GlobalFunc.h"
-#include "Sources/GlobalSettings.h"
-#include "Sources/AsulApplication.h"
+#include "../COM_SplashWindow/T_SplashScreen.h"
+#include "../Global/GlobalFunc.h"
+#include "../Global/GlobalSettings.h"
+#include "../SystemKit/AsulApplication.h"
 #include "Def.h"
 
 

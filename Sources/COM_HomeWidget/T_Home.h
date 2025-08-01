@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include "ElaWidget.h"
-#include "../BaseScrollPage.h"
+#include "../SystemKit/BaseScrollPage.h"
 class T_Home : public BaseScrollPage
 {
     Q_OBJECT

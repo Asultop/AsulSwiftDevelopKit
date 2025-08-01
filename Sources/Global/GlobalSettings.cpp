@@ -1,5 +1,5 @@
 #include "GlobalSettings.h"
-#include "AsulApplication.h"
+#include "../SystemKit/AsulApplication.h"
 #include <QStyleHints>
 #include <ElaTheme.h>
 #include "GlobalFunc.h"

@@ -4,32 +4,32 @@
 <context>
     <name>Asul</name>
     <message>
-        <location filename="../asul.cpp" line="20"/>
+        <location filename="../Sources/MainEntry/asul.cpp" line="20"/>
         <source>关闭</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="../asul.cpp" line="20"/>
+        <location filename="../Sources/MainEntry/asul.cpp" line="20"/>
         <source>确定要关闭此程序?</source>
         <translation>Are you sure to exit?</translation>
     </message>
     <message>
-        <location filename="../asul.cpp" line="41"/>
+        <location filename="../Sources/MainEntry/asul.cpp" line="41"/>
         <source>主页</source>
         <translation>Home</translation>
     </message>
     <message>
-        <location filename="../asul.cpp" line="45"/>
+        <location filename="../Sources/MainEntry/asul.cpp" line="42"/>
         <source>样例组</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../asul.cpp" line="49"/>
+        <location filename="../Sources/MainEntry/asul.cpp" line="47"/>
         <source>关于</source>
         <translation>About</translation>
     </message>
     <message>
-        <location filename="../asul.cpp" line="51"/>
+        <location filename="../Sources/MainEntry/asul.cpp" line="48"/>
         <source>设置</source>
         <translation>Settings</translation>
     </message>
@@ -37,12 +37,12 @@
 <context>
     <name>GlobalFunc</name>
     <message>
-        <location filename="../Sources/GlobalFunc.cpp" line="151"/>
+        <location filename="../Sources/Global/GlobalFunc.cpp" line="151"/>
         <source>是</source>
         <translation>Yes</translation>
     </message>
     <message>
-        <location filename="../Sources/GlobalFunc.cpp" line="153"/>
+        <location filename="../Sources/Global/GlobalFunc.cpp" line="153"/>
         <source>否</source>
         <translation>No</translation>
     </message>

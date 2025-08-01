@@ -13,7 +13,7 @@
 #include <qprocess.h>
 #include <qsize.h>
 #include <qstylehints.h>
-#include "AsulApplication.h"
+#include "../SystemKit/AsulApplication.h"
 
 Q_SINGLETON_CREATE_CPP(GlobalFunc);
 GlobalFunc::GlobalFunc(QObject *parent)

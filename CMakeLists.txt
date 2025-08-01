@@ -35,32 +35,37 @@ set(CMAKE_AUTORCC ON)
 
 # 源文件和头文件
 set(SOURCES
-    Sources/BaseScrollpage.cpp
+    Sources/SystemKit/BaseScrollpage.cpp
+    Sources/Global/GlobalFunc.cpp
+    Sources/Global/GlobalSettings.cpp
+    Sources/SystemKit/AsulApplication.cpp
+
     Sources/COM_HomeWidget/T_Home.cpp
     Sources/COM_SplashWindow/T_SplashScreen.cpp
-    Sources/GlobalFunc.cpp
-    Sources/GlobalSettings.cpp
-    Sources/AsulApplication.cpp
     Sources/COM_SettingWidget/T_SettingScreen.cpp
     Sources/COM_AboutWidget/T_About.cpp
-    main.cpp
-    asul.cpp
+    Sources/CTL_AsulComboBox/AsulComboBox.cpp
+
+    Sources/MainEntry/main.cpp
+    Sources/MainEntry/asul.cpp
 )
 
 set(HEADERS
-    Sources/BaseInclude.h
-    Sources/BaseScrollpage.h
+    Sources/SystemKit/BaseInclude.h
+    Sources/SystemKit/BaseScrollpage.h
+    Sources/Global/GlobalFunc.h
+    Sources/Global/GlobalSettings.h
+    Sources/SystemKit/AsulApplication.h
     Sources/COM_HomeWidget/T_Home.h
     Sources/COM_SplashWindow/T_SplashScreen.h
-    Sources/GlobalFunc.h
-    Sources/GlobalSettings.h
-    Sources/AsulApplication.h
     Sources/COM_SettingWidget/T_SettingScreen.h
     Sources/COM_AboutWidget/T_About.h
-    Def.h
-    asul.h
-    singleton.h
-    stdafx.h
+    Sources/CTL_AsulComboBox/AsulComboBox.h
+    
+    Sources/MainEntry/Def.h
+    Sources/MainEntry/asul.h
+    Sources/MainEntry/singleton.h
+    Sources/MainEntry/stdafx.h
 )
 
 # 资源文件
@@ -84,8 +89,7 @@ add_executable(${PROJECT_NAME} WIN32
     ${RESOURCE_FILES}
     ${TS_FILES}
     ${QM_FILES}
-    Sources/CTL_AsulComboBox/AsulComboBox.h
-    Sources/CTL_AsulComboBox/AsulComboBox.cpp
+
 
 )
 

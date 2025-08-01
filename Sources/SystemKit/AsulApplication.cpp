@@ -1,6 +1,6 @@
 #include "AsulApplication.h"
-#include <qtimer.h>
-#include "GlobalSettings.h"
+#include <QTimer>
+#include "../Global/GlobalSettings.h"
 bool AsulApplication::event(QEvent *event){
     static bool isProcessing = false; // 防止重入
     if (event->type() == QEvent::ApplicationPaletteChange && gSets->getEnableThemeColorSyncWithSystem()) {

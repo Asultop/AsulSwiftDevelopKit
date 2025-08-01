@@ -7,7 +7,7 @@
 #include "ElaImageCard.h"
 #include "ElaText.h"
 #include "ElaTheme.h"
-#include "../GlobalSettings.h"
+#include "../Global/GlobalSettings.h"
 T_About::T_About (QWidget* parent)
     : ElaWidget (parent)
 {

@@ -1,11 +1,11 @@
 #include "T_SettingScreen.h"
-#include "../GlobalFunc.h"
-#include "../GlobalSettings.h"
+#include "../Global/GlobalFunc.h"
+#include "../Global/GlobalSettings.h"
 #include <ElaToggleSwitch.h>
 #include <qboxlayout.h>
 #include <qpixmap.h>
 #include <qstylehints.h>
-#include "../AsulApplication.h"
+#include "../SystemKit/AsulApplication.h"
 #include "Def.h"
 #include "ElaApplication.h"
 
