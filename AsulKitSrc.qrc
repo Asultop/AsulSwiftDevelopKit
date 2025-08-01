@@ -1,5 +1,4 @@
 <RCC>
-    <qresource prefix="/icon"/>
     <qresource prefix="/">
         <file>Sources/icon/favicon.ico</file>
         <file>IDC/res.rc</file>

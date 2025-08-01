@@ -41,7 +41,7 @@ int main(int argc, char *argv[])
     };
 
     //启用 启动细节面板
-    T_SplashScreen *splashWindow=new T_SplashScreen(nullptr,"AsulKit",":/Sources/icon/splash_${THEME}.png");
+    T_SplashScreen *splashWindow=new T_SplashScreen(nullptr,gSets->getProgramName(),":/Sources/icon/splash_${THEME}.png");
 
     auto EnableSplashScreen = [splashWindow](bool e){
         if (!e) return;
