@@ -9,9 +9,6 @@
 #include "../Global/GlobalFunc.h"
 #include <ElaApplication.h>
 
-
-
-
 Asul::Asul(QWidget *parent) : ElaWindow(parent) {
 
   this->setIsDefaultClosed(false);
@@ -23,27 +20,26 @@ Asul::Asul(QWidget *parent) : ElaWindow(parent) {
       qApp->quit();
     }
   });
-  this->setWindowTitle(gSets->getProgramName() +
+  
+  
+  this->setWindowTitle(gSets->getProgramName() + 
                        QString(" [%1]").arg(gSets->getProgramVersion()));
-  this->setFixedSize(QSize(1200, 800));
+  this->setFixedSize(QSize(1200, 800)); //SetSize
   this->AsulWindowINIT(
-      this, AsulINIT(true,                                   // CardVisible
-                     ":///Sources/icon/splash_${THEME}.png", // CardPixmap
+      this, AsulINIT(true,                              // CardVisible
+                     ":///Sources/icon/splash_${THEME}.png", // CardPixmap TIPS: ${THEME} Could Automatically Change 
                      gSets->getProgramName(),                // CardTitle
                      "@" + gSets->getProgramAuthor(),        // CardSubTitle
                      ElaAppBarType::CloseButtonHint |
                          ElaAppBarType::MaximizeButtonHint |
                          ElaAppBarType::MinimizeButtonHint // ButtonFlag
                      ));
-
-
-
+  this->setNavigationBarDisplayMode(ElaNavigationType::Compact); //SetNavigationBarDisplayMode
   InstallPage(tr("主页"), T_Home, ElaIconType::House);
   AddExpanderNode(tr("样例组"), Sample, ElaIconType::DiceD6);
-  for(int i=1;i<=50;i++){
+  for(int i=1;i<=15;i++){
     INSTALL_SAMPLE_PAGE(i);
   }
-  
   InstallAboutFooter(tr("关于"), T_About, _about);
   InstallFooter(tr("设置"), T_SettingScreen, _setting, ElaIconType::Gear);
   

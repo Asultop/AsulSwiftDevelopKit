@@ -7,6 +7,8 @@
 #include <ElaLineEdit.h>
 #include <ElaText.h>
 
+
+
 Q_SINGLETON_CREATE_CPP(GlobalSettings);
 GlobalSettings::GlobalSettings(QObject *parent)
     : QObject{parent}{}
@@ -36,7 +38,6 @@ void GlobalSettings::init()
             //ToDo: Need Do Something But Not Now; 
         }
     }
-
 
     this->setRegisterSettings(new QSettings(getProgramOrganization(),getProgramName(),this));
 

@@ -17,10 +17,8 @@ int main(int argc, char *argv[])
 
     AsulApplication a(argc, argv);
     eApp->init();
-
     gSets->init();
     //跟随系统主题色
-
     auto TranslationInstallation=[=](bool e){
         if(!e) return;
         QStringList SupportedLang=gSets->getSupportedLang();
