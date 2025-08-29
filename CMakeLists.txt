@@ -110,7 +110,7 @@ endif()
 
 # 包含目录
 target_include_directories(${PROJECT_NAME} PRIVATE
-    ${CMAKE_CURRENT_SOURCE_DIR}/install/include
+    ${CMAKE_CURRENT_SOURCE_DIR}/3rd/ElaWidgetTools/install/include
 )
 
 # 链接库
@@ -123,18 +123,18 @@ if(WIN32)
     # 链接ElaWidgetTools库
     if(MINGW)
         target_link_libraries(${PROJECT_NAME} PRIVATE
-            ${CMAKE_CURRENT_SOURCE_DIR}/install/lib/libElaWidgetTools.a
+            ${CMAKE_CURRENT_SOURCE_DIR}/3rd/ElaWidgetTools/install/lib/libElaWidgetTools.a
         )
     else()
         target_link_libraries(${PROJECT_NAME} PRIVATE
-            ${CMAKE_CURRENT_SOURCE_DIR}/install/lib/ElaWidgetTools.lib
+            ${CMAKE_CURRENT_SOURCE_DIR}/3rd/ElaWidgetTools/install/lib/ElaWidgetTools.lib
         )
     endif()
 
     # 部署DLL
     add_custom_command(TARGET ${PROJECT_NAME} POST_BUILD
         COMMAND ${CMAKE_COMMAND} -E copy_if_different
-        "${CMAKE_CURRENT_SOURCE_DIR}/install/bin/ElaWidgetTools.dll"
+        "${CMAKE_CURRENT_SOURCE_DIR}/3rd/ElaWidgetTools/install/bin/ElaWidgetTools.dll"
         $<TARGET_FILE_DIR:${PROJECT_NAME}>
         COMMENT "Copying ElaWidgetTools.dll to binary directory"
     )
