@@ -45,7 +45,7 @@ public:
     static std::pair<bool, QString> createDirectoryRecursively(const QString &path);
     static bool UnCompressFiles(QString zipFile, QString sDestPath);
     static void addThemeSyncList(QWidget *controler);
-
+    static bool UnCompressFiles2(const QString &archivePath, const QString &extractDir);
 
 signals:
     void updateThemeUISignal();

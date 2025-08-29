@@ -13,6 +13,7 @@
 #include <qprocess.h>
 #include <qsize.h>
 #include <qstylehints.h>
+#include <QStandardPaths>
 #include "../SystemKit/AsulApplication.h"
 
 Q_SINGLETON_CREATE_CPP(GlobalFunc);
@@ -40,6 +41,48 @@ void GlobalFunc::updateThemeUI(){
     eTheme->setThemeColor(ElaThemeType::Light, ElaThemeType::PrimaryHover, GlobalFunc::getDarkerColor(bgColor));
     eTheme->setThemeColor(ElaThemeType::Light, ElaThemeType::PrimaryPress, GlobalFunc::getDarkerColor(bgColor,95));
 
+}
+bool GlobalFunc::UnCompressFiles2(const QString &archivePath, const QString &extractDir){
+    QString program;
+#ifdef Q_OS_WIN
+    program = QCoreApplication::applicationDirPath()+"/7z.exe"; // 默认安装路径
+    if (!QFile::exists(program)) {
+        program = QStandardPaths::findExecutable("7z.exe");
+
+    }
+#else
+    program = QStandardPaths::findExecutable("7z");
+#endif
+
+    if (program.isEmpty()) {
+        qWarning() << "7-Zip not found!";
+        return false;
+    }
+
+    QProcess process;
+    process.setProgram(program);
+    process.setArguments({
+        "x",
+        archivePath,
+        "-o" + extractDir,
+        "-y" // 覆盖已存在文件
+    });
+
+    process.start();
+    if (!process.waitForFinished(30000)) { // 30秒超时
+        qWarning() << "[Process] timeout:" << process.errorString();
+        return false;
+    }
+
+    if (process.exitCode() != 0) {
+        qWarning() << "Extraction failed. Exit code:"
+                   << process.exitCode()
+                   << "Error:"
+                   << process.readAllStandardError();
+        return false;
+    }
+
+    return true;
 }
 void GlobalFunc::updateThemeUI(QColor customColor){
     emit gFunc->updateThemeUISignalByCustom(customColor);

@@ -42,12 +42,12 @@
 <context>
     <name>GlobalFunc</name>
     <message>
-        <location filename="../Sources/Global/GlobalFunc.cpp" line="151"/>
+        <location filename="../Sources/Global/GlobalFunc.cpp" line="194"/>
         <source>是</source>
         <translation>Yes</translation>
     </message>
     <message>
-        <location filename="../Sources/Global/GlobalFunc.cpp" line="153"/>
+        <location filename="../Sources/Global/GlobalFunc.cpp" line="196"/>
         <source>否</source>
         <translation>No</translation>
     </message>
