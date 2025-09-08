@@ -4,37 +4,42 @@
 <context>
     <name>Asul</name>
     <message>
-        <location filename="../Sources/MainEntry/asul.cpp" line="18"/>
+        <location filename="../Sources/MainEntry/asul.cpp" line="19"/>
         <source>关闭</source>
         <translation>Close</translation>
     </message>
     <message>
-        <location filename="../Sources/MainEntry/asul.cpp" line="18"/>
+        <location filename="../Sources/MainEntry/asul.cpp" line="19"/>
         <source>确定要关闭此程序?</source>
         <translation>Are you sure to exit?</translation>
     </message>
     <message>
-        <location filename="../Sources/MainEntry/asul.cpp" line="39"/>
+        <location filename="../Sources/MainEntry/asul.cpp" line="40"/>
         <source>主页</source>
         <translation>Home</translation>
     </message>
     <message>
-        <location filename="../Sources/MainEntry/asul.cpp" line="40"/>
+        <location filename="../Sources/MainEntry/asul.cpp" line="41"/>
         <source>图标</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Sources/MainEntry/asul.cpp" line="41"/>
+        <location filename="../Sources/MainEntry/asul.cpp" line="42"/>
         <source>样例组</source>
         <translation type="unfinished"></translation>
     </message>
     <message>
-        <location filename="../Sources/MainEntry/asul.cpp" line="45"/>
+        <location filename="../Sources/MainEntry/asul.cpp" line="46"/>
+        <source>示例</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Sources/MainEntry/asul.cpp" line="47"/>
         <source>关于</source>
         <translation>About</translation>
     </message>
     <message>
-        <location filename="../Sources/MainEntry/asul.cpp" line="46"/>
+        <location filename="../Sources/MainEntry/asul.cpp" line="48"/>
         <source>设置</source>
         <translation>Settings</translation>
     </message>
@@ -42,12 +47,12 @@
 <context>
     <name>GlobalFunc</name>
     <message>
-        <location filename="../Sources/Global/GlobalFunc.cpp" line="194"/>
+        <location filename="../Sources/Global/GlobalFunc.cpp" line="202"/>
         <source>是</source>
         <translation>Yes</translation>
     </message>
     <message>
-        <location filename="../Sources/Global/GlobalFunc.cpp" line="196"/>
+        <location filename="../Sources/Global/GlobalFunc.cpp" line="204"/>
         <source>否</source>
         <translation>No</translation>
     </message>
@@ -90,6 +95,31 @@
     </message>
 </context>
 <context>
+    <name>T_Example</name>
+    <message>
+        <source>设置</source>
+        <translation type="obsolete">Settings</translation>
+    </message>
+    <message>
+        <location filename="../Sources/COM_ExampleWidget.template/T_Example.cpp" line="14"/>
+        <source>样例</source>
+        <translation type="unfinished"></translation>
+    </message>
+    <message>
+        <location filename="../Sources/COM_ExampleWidget.template/T_Example.cpp" line="17"/>
+        <source>使用这个模板快速开始界面开发</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
+    <name>T_Icon</name>
+    <message>
+        <location filename="../Sources/COM_IconWidget/T_Icon.cpp" line="25"/>
+        <source>图标</source>
+        <translation type="unfinished"></translation>
+    </message>
+</context>
+<context>
     <name>T_SettingScreen</name>
     <message>
         <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="21"/>
@@ -97,80 +127,80 @@
         <translation>Settings</translation>
     </message>
     <message>
-        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="28"/>
+        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="139"/>
         <source>开启颜色同步</source>
         <translation>Sync color</translation>
     </message>
     <message>
-        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="28"/>
+        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="139"/>
         <source>同步 Windows 的主题色</source>
         <translation>Sync Windows Theme Color</translation>
     </message>
     <message>
-        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="36"/>
+        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="140"/>
         <source>开启明暗同步</source>
         <translation>Sync Ligh / Dark Mode</translation>
     </message>
     <message>
-        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="36"/>
+        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="140"/>
         <source>同步 Windows 的明暗模式</source>
         <translation>Sync Windows &apos;s Light / Dark Mode</translation>
     </message>
     <message>
-        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="51"/>
+        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="141"/>
         <source>显示模式</source>
         <translation>Display Mode</translation>
     </message>
     <message>
-        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="51"/>
+        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="141"/>
         <source>切换窗口显示模式</source>
         <translation>Switch display mode of widget</translation>
     </message>
     <message>
-        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="88"/>
+        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="142"/>
         <source>切换主题</source>
         <translation>Switch Theme</translation>
     </message>
     <message>
-        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="88"/>
+        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="142"/>
         <source>切换 Dark/Light</source>
         <translation>Switch Dark/Light</translation>
     </message>
     <message>
-        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="100"/>
-        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="110"/>
+        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="97"/>
+        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="143"/>
         <source>选择颜色</source>
         <translation>Pick color</translation>
     </message>
     <message>
-        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="110"/>
+        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="143"/>
         <source>选择自定义颜色</source>
         <translation>Pick customized color</translation>
     </message>
     <message>
-        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="115"/>
+        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="144"/>
         <source>切换语言</source>
         <translation>Switch Languages</translation>
     </message>
     <message>
-        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="120"/>
-        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="123"/>
+        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="115"/>
+        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="118"/>
         <source>语言</source>
         <translation>Languages</translation>
     </message>
     <message>
-        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="120"/>
+        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="115"/>
         <source>是否重启以更换语言</source>
         <translation>Restart to change language</translation>
     </message>
     <message>
-        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="123"/>
+        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="118"/>
         <source>重启以更换语言</source>
         <translation>Restart To Switch Language</translation>
     </message>
     <message>
-        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="129"/>
-        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="133"/>
+        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="145"/>
+        <location filename="../Sources/COM_SettingWidget/T_SettingScreen.cpp" line="146"/>
         <source>测试图标</source>
         <translation>Test Icon</translation>
     </message>

@@ -3,10 +3,10 @@
 
 #include <ElaWindow.h>
 #include "../SystemKit/BaseInclude.h"
-
+#include "../COM_ExampleWidget.template/T_Example.h"
 
 #define INSTALL_SAMPLE_PAGE(n) \
-    class Sample##n : public BaseScrollPage {}; \
+    class Sample##n : public T_Example {}; \
     InstallPage_Expander(("样例")+QString::number(i), Sample##n, Sample##ExpKey, ElaIconType::DiceD6);
 
 #define AddExpanderNode(Label , ExpandKey,ElaIcon) \

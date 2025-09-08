@@ -25,15 +25,13 @@ T_SettingScreen::T_SettingScreen(QWidget *parent)
 
     ElaToggleSwitch *closeThemeColorSync=new ElaToggleSwitch(this);
     closeThemeColorSync->setIsToggled(gSets->getEnableThemeColorSyncWithSystem());
-    centerVLayout->addWidget(GlobalFunc::GenerateArea(this,new ElaText(tr("开启颜色同步"),this),new ElaText(tr("同步 Windows 的主题色"),this),closeThemeColorSync,false));
-    connect(closeThemeColorSync,&ElaToggleSwitch::toggled,[=](bool checked){
+        connect(closeThemeColorSync,&ElaToggleSwitch::toggled,[=](bool checked){
         gSets->setEnableThemeColorSyncWithSystem(checked);
         if(checked) GlobalFunc::updateThemeUI();
     });
 
     ElaToggleSwitch *closeThemeModeSync=new ElaToggleSwitch(this);
     closeThemeModeSync->setIsToggled(gSets->getEnableThemeModeSyncWithSystem());
-    centerVLayout->addWidget(GlobalFunc::GenerateArea(this,new ElaText(tr("开启明暗同步"),this),new ElaText(tr("同步 Windows 的明暗模式"),this),closeThemeModeSync,false));
     connect(closeThemeModeSync,&ElaToggleSwitch::toggled,[=](bool checked){
         gSets->setEnableThemeModeSyncWithSystem(checked);
         if(checked){
@@ -48,7 +46,7 @@ T_SettingScreen::T_SettingScreen(QWidget *parent)
     SwitchDisplayMode->addItems(QString{"Normal ElaMica Mica MicaAlt Acrylic DWMBlur"}.split(" "));
     SwitchDisplayMode->setCurrentText("Acrylic");
     eApp->setWindowDisplayMode(ElaApplicationType::Acrylic);
-    centerVLayout->addWidget(GlobalFunc::GenerateArea(this,new ElaText(tr("显示模式"),this),new ElaText(tr("切换窗口显示模式"),this),SwitchDisplayMode,false));
+    
     connect(SwitchDisplayMode,&AsulComboBox::currentIndexChanged,[=](int index){
         QString filePath = gSets->getGLoc()->path()+"/mica.png";
         switch (index){
@@ -85,8 +83,7 @@ T_SettingScreen::T_SettingScreen(QWidget *parent)
     AsulComboBox * changeThemeMode = new AsulComboBox(this);
     changeThemeMode->addItems(QString{"Light Dark"}.split(" "));
     changeThemeMode->setCurrentText(eTheme->getThemeMode()==ElaThemeType::Dark?"Dark":"Light");
-    centerVLayout->addWidget(GlobalFunc::GenerateArea(this,new ElaText(tr("切换主题"),this),new ElaText(tr("切换 Dark/Light"),this),changeThemeMode,false));
-    connect(changeThemeMode,&AsulComboBox::currentIndexChanged,[=](int index){
+        connect(changeThemeMode,&AsulComboBox::currentIndexChanged,[=](int index){
         if(index==0){
             eTheme->setThemeMode(ElaThemeType::Light);
         }else eTheme->setThemeMode(ElaThemeType::Dark);
@@ -107,12 +104,10 @@ T_SettingScreen::T_SettingScreen(QWidget *parent)
     connect(colorDialog, &ElaColorDialog::colorSelected, this, [=](const QColor& color) {
         GlobalFunc::updateThemeUI(color);
     });
-    centerVLayout->addWidget(GlobalFunc::GenerateArea(this,ElaIconType::Display,new ElaText(tr("选择颜色"),this),new ElaText(tr("选择自定义颜色"),this),ColorPickBtn,false));
 
     AsulComboBox * switchLanguage = new AsulComboBox(this);
     switchLanguage->addItems(gSets->getSupportedLang());
     switchLanguage->setCurrentText(gSets->getRegisterSettings()->value("lang").toString());
-    centerVLayout->addWidget(GlobalFunc::GenerateArea(this,ElaIconType::Globe,new ElaText(tr("切换语言"),this),new ElaText(tr("切换语言"),this),switchLanguage,false));
 
     connect(switchLanguage,&AsulComboBox::currentTextChanged,[=](QString val){
         gSets->getRegisterSettings()->setValue("lang",val);
@@ -126,12 +121,10 @@ T_SettingScreen::T_SettingScreen(QWidget *parent)
 
     AsulComboBox *test1ComboBox=new AsulComboBox(this);
     test1ComboBox->addItems(QString{"Test1 Test2 Test3 Test4 Test5"}.split(" "));
-    centerVLayout->addWidget(GlobalFunc::GenerateArea(this,ElaIconType::DiceD6,new ElaText(tr("测试图标"),this),new ElaText(tr("测试图标"),this),test1ComboBox,false));
 
     AsulComboBox *test2ComboBox=new AsulComboBox(this);
     test2ComboBox->addItems(QString{"Test1 Test2 Test3 Test4 Test5"}.split(" "));
-    centerVLayout->addWidget(GlobalFunc::GenerateArea(this,QString(":/Sources/icon/splash_${THEME}.png"),new ElaText(tr("测试图标"),this),new ElaText(tr("测试图标"),this),test2ComboBox,false));
-    
+
     
     ElaScrollPageArea * TestingArea=new ElaScrollPageArea(this);
     TestingArea->setMinimumWidth(600);
@@ -139,8 +132,19 @@ T_SettingScreen::T_SettingScreen(QWidget *parent)
     TestingAreaTextEdit->setPlainText("TestingAreaTextEdit");
     QHBoxLayout *testingAreaLayout=new QHBoxLayout(TestingArea);
     testingAreaLayout->addWidget(TestingAreaTextEdit);
-    centerVLayout->addWidget(TestingArea);
 
+
+
+
+    centerVLayout->addWidget(GlobalFunc::GenerateArea(this,new ElaText(tr("开启颜色同步"),this),new ElaText(tr("同步 Windows 的主题色"),this),closeThemeColorSync,false));
+    centerVLayout->addWidget(GlobalFunc::GenerateArea(this,new ElaText(tr("开启明暗同步"),this),new ElaText(tr("同步 Windows 的明暗模式"),this),closeThemeModeSync,false));
+    centerVLayout->addWidget(GlobalFunc::GenerateArea(this,new ElaText(tr("显示模式"),this),new ElaText(tr("切换窗口显示模式"),this),SwitchDisplayMode,false));
+    centerVLayout->addWidget(GlobalFunc::GenerateArea(this,new ElaText(tr("切换主题"),this),new ElaText(tr("切换 Dark/Light"),this),changeThemeMode,false));
+    centerVLayout->addWidget(GlobalFunc::GenerateArea(this,ElaIconType::Display,new ElaText(tr("选择颜色"),this),new ElaText(tr("选择自定义颜色"),this),ColorPickBtn,false));
+    centerVLayout->addWidget(GlobalFunc::GenerateArea(this,ElaIconType::Globe,new ElaText(tr("切换语言"),this),new ElaText(tr("切换语言"),this),switchLanguage,false));
+    centerVLayout->addWidget(GlobalFunc::GenerateArea(this,ElaIconType::DiceD6,new ElaText(tr("测试图标"),this),new ElaText(tr("测试图标"),this),test1ComboBox,false));
+    centerVLayout->addWidget(GlobalFunc::GenerateArea(this,QString(":/Sources/icon/splash_${THEME}.png"),new ElaText(tr("测试图标"),this),new ElaText(tr("测试图标"),this),test2ComboBox,false));
+    centerVLayout->addWidget(TestingArea);
 
     centerVLayout->addStretch();
 }

@@ -30,6 +30,7 @@ public:
     static void updateThemeUI(QColor customColor);
 
     static double getReadTime(QString context);
+    static double getReadWidth(ElaText *context);
     static bool askDialog(QWidget *parent,QString title,QString content);
     static bool askDialog(QString title, QString content);
 
@@ -40,12 +41,14 @@ public:
     static ElaScrollPageArea * GenerateArea(QWidget *parent, ElaText *title, ElaText *subtitle, QWidget *widget, bool convert=true);
     static ElaScrollPageArea * GenerateArea(QWidget *parent, QString iconPath, ElaText *title, ElaText *subtitle, QWidget *widget, bool convert=true);
     static ElaScrollPageArea * GenerateArea(QWidget *parent, ElaIconType::IconName iconType, ElaText *title, ElaText *subtitle, QWidget *widget, bool convert=true);
+    static ElaScrollPageArea * GenerateArea(QWidget *parent, QString iconPath, ElaText *title, ElaText *subtitle, QHBoxLayout *widget, bool convert=true);
+    static ElaScrollPageArea * GenerateArea(QWidget *parent, ElaIconType::IconName iconType, ElaText *title, ElaText *subtitle, QHBoxLayout *widget, bool convert=true);
+
 
     static void saveResourceFile(QString resProfiex, QString resFileName, QString destFullPathFileName);
     static std::pair<bool, QString> createDirectoryRecursively(const QString &path);
-    static bool UnCompressFiles(QString zipFile, QString sDestPath);
     static void addThemeSyncList(QWidget *controler);
-    static bool UnCompressFiles2(const QString &archivePath, const QString &extractDir);
+    static bool UnzipFile(const QString &archivePath, const QString &extractDir);
 
 signals:
     void updateThemeUISignal();

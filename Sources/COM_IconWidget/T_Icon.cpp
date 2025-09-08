@@ -22,7 +22,7 @@ T_Icon::T_Icon(QWidget* parent)
 
     QVBoxLayout* centerVLayout = new QVBoxLayout(centralWidget);
     centerVLayout->setContentsMargins(0, 0, 5, 0);
-    centralWidget->setWindowTitle("Icon");
+    centralWidget->setWindowTitle(tr("图标"));
     // ListView
     _iconView = new ElaListView(this);
     _iconView->setIsTransparent(true);

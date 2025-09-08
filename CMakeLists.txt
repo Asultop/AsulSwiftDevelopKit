@@ -47,6 +47,7 @@ set(SOURCES
     Sources/COM_IconWidget/T_Icon.cpp
     Sources/COM_IconWidget/T_IconDelegate.cpp
     Sources/COM_IconWidget/T_IconModel.cpp
+    Sources/COM_ExampleWidget.template/T_Example.cpp
 
     Sources/CTL_AsulComboBox/AsulComboBox.cpp
 
@@ -67,6 +68,7 @@ set(HEADERS
     Sources/COM_IconWidget/T_Icon.h
     Sources/COM_IconWidget/T_IconDelegate.h
     Sources/COM_IconWidget/T_IconModel.h
+    Sources/COM_ExampleWidget.template/T_Example.h
 
     Sources/CTL_AsulComboBox/AsulComboBox.h
     

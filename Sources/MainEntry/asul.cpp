@@ -5,6 +5,7 @@
 #include "../COM_SettingWidget/T_SettingScreen.h"
 #include "../COM_AboutWidget/T_About.h"
 #include "../COM_IconWidget/T_Icon.h"
+#include "../COM_ExampleWidget.template/T_Example.h"
 
 #include "../Global/GlobalSettings.h"
 #include "../Global/GlobalFunc.h"
@@ -42,6 +43,7 @@ Asul::Asul(QWidget *parent) : ElaWindow(parent) {
   for(int i=1;i<=15;i++){
     INSTALL_SAMPLE_PAGE(i);
   }
+  InstallPage(tr("示例"),T_Example,ElaIconType::Code);
   InstallAboutFooter(tr("关于"), T_About, _about);
   InstallFooter(tr("设置"), T_SettingScreen, _setting, ElaIconType::Gear);
   
