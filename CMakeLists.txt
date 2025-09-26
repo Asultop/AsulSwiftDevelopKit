@@ -1,6 +1,5 @@
 cmake_minimum_required(VERSION 3.16)
 
-
 set(JSON_FILE_PATH "${CMAKE_SOURCE_DIR}/PropertySetting/Program_Property.json")
 file(READ ${JSON_FILE_PATH} JSON_CONTENTS)
 set(TARGET_KEY "targetName")
